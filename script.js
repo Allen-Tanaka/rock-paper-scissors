@@ -37,3 +37,43 @@ function playRound(playerSelection, computerSelection) {
  
   return `You lose! ${computerSelection} beats ${playerSelection}.`;
 }
+
+function game() {
+  const TOTAL_ROUNDS = 5;
+  let playerScore = 0;
+  let computerScore = 0;
+ 
+  console.log("=== ROCK, PAPER, SCISSORS — 5 Rounds ===\n");
+ 
+  for (let i = 0; i < TOTAL_ROUNDS; i++) {
+    const round = i + 1;
+    const playerSelection = getPlayerSelection();
+ 
+    if (playerSelection === null) {
+      console.log("Game cancelled.");
+      alert("Game cancelled. Refresh to play again.");
+      return;
+    }
+ 
+    const computerSelection = computerPlay();
+    const result = playRound(playerSelection, computerSelection);
+ 
+    if (result.startsWith("You win")) playerScore++;
+    else if (result.startsWith("You lose")) computerScore++;
+ 
+    console.log(`Round ${round}: ${result} | Score — You: ${playerScore} | Computer: ${computerScore}`);
+ 
+    alert(
+      `Round ${round} of ${TOTAL_ROUNDS}\n\n${result}\n\nScore — You: ${playerScore} | Computer: ${computerScore}`
+    );
+  }
+ 
+  let finalResult;
+  if (playerScore > computerScore) finalResult = "You win the match!";
+  else if (computerScore > playerScore) finalResult = "Computer wins the match!";
+  else finalResult = "It's a draw!";
+ 
+  console.log(`\n=== FINAL RESULT ===`);
+  console.log(`${finalResult} You: ${playerScore} | Computer: ${computerScore}`);
+  alert(`${finalResult}\n\nFinal Score — You: ${playerScore} | Computer: ${computerScore}`);
+}
