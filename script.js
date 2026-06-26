@@ -77,3 +77,5 @@ function game() {
   console.log(`${finalResult} You: ${playerScore} | Computer: ${computerScore}`);
   alert(`${finalResult}\n\nFinal Score — You: ${playerScore} | Computer: ${computerScore}`);
 }
+
+game();
